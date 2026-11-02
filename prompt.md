@@ -19,6 +19,7 @@ You are building **bountygang**, a local CLI that makes bug bounty hunting as ea
 2. **Scope gate**
    - The only path from any worker to the network.
    - Validates a target URL/host against the stored in-scope patterns of one chosen program. Refuses everything else and logs the refusal. No override flag in v1.
+   - Also records whether the program's policy allows automated testing, and blocks workers when it does not or is unclear (manual checklist instead).
 
 3. **IDOR worker**
    - Input: program name, base URL, credentials/session for TWO of the user's own test accounts.
@@ -39,6 +40,7 @@ You are building **bountygang**, a local CLI that makes bug bounty hunting as ea
 ## Hard rules (enforce in code, not just docs)
 
 - Test only assets in scope of a program the user joined, only with accounts the user owns.
+- Public scope is not authorization by itself. Many programs prohibit or limit automated scanning even for in-scope assets. The scope gate stores each program's automation rules and blocks automated workers unless the program's own policy allows automation; manual-only programs get a manual checklist, not a scan. When the policy is unclear, the gate treats it as manual-only and asks.
 - No auto-submission, ever. A human files every report.
 - No data exfiltration: evidence proves the access bug and redacts other people's data.
 - Respect rate limits and program rules; stop on any block.

@@ -15,6 +15,7 @@ Status: spec stage. The whole build spec is `prompt.md`.
 ## Hard rules (code, not vibes)
 
 - Only assets in scope of a program you joined, only accounts you own.
+- In-scope is not automatic permission: programs that ban automated scanning get a manual checklist, not a scan.
 - No auto-submission, ever.
 - No data exfiltration. Evidence is proof of the access bug, redacted.
 - Respect rate limits and program rules. Stop on any block.
