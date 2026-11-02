@@ -8,9 +8,9 @@ Status: spec stage. The whole build spec is `prompt.md`.
 
 1. **Scout** - pulls programs and scope from HackerOne, Intigriti, Bugcrowd, Google Bughunters, huntr. Ranks them by payout, fresh scope, response time, competition.
 2. **Scope gate** - every check goes through it. If the target is not in scope of a program you joined, it refuses and logs the refusal.
-3. **IDOR worker** - tests object IDs across two of your own test accounts and flags where account B can touch account A's data. Read-only requests, everything logged.
+3. **IDOR worker** - tests object IDs across two of your own test accounts and flags where account B can read account A's data. GET-only, no writes, credentials redacted before anything is logged.
 4. **Extra workers** - pluggable checks, each behind the scope gate: exposed secrets in public JS, subdomain takeover (DNS only), harmless reflected-input canaries.
-5. **Reporter** - drafts the platform-ready report (steps, impact, evidence), benchmarks the payout against disclosed reports, queues it for your yes. Never submits.
+5. **Reporter** - drafts the platform-ready report (steps, impact, evidence), estimates payout only from published disclosed reports, queues it for your yes. Never submits.
 
 ## Hard rules (code, not vibes)
 
